@@ -1,0 +1,23 @@
+name: Judge pipeline
+run-name: Runs Lint and pytest checks
+on: [push, pull_request]
+jobs:
+    Run-Tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            
+            - name: Set up python
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.12'
+                architecture: 'x64'
+            
+            - name: Install Dependencies
+              run: pip install ruff pytest
+            
+            - name: Run Ruff
+              run: ruff check .
+            
+            - name: Run Pytest
+              run: pytest

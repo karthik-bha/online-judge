@@ -1,0 +1,9 @@
+# virtual env
+.venv
+
+# env vars
+**/*.env
+
+#misc
+**/*.pytest_cache
+**/__pycache__/
