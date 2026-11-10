@@ -1,5 +1,3 @@
-Markdown
-
 # Judge
 
 A Python evaluation and testing project.
