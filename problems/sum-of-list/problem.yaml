@@ -1,0 +1,18 @@
+id: sum-of-list
+title: Add a list of numbers
+difficulty: easy
+time_limit_ms: 2000
+memory_limit_mb: 128
+
+tests:
+    - id: 1
+      hidden: false
+
+    - id: 2
+      hidden: false
+
+    - id: 3
+      hidden: true
+
+    - id: 4
+      hidden: true
