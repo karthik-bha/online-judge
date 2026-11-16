@@ -1,6 +1,8 @@
 import time
+
 import docker
 from requests.exceptions import ReadTimeout
+
 
 def test_infinite_loop_timeout():
     # prep the client and variables to create a container
@@ -35,7 +37,7 @@ def test_infinite_loop_timeout():
     try:
         print("Waiting for container with 2s timeout...")
         container.wait(timeout=2.0)
-    except (ReadTimeout, Exception):
+    except (ReadTimeout, Exception):  # noqa: BLE001
         timed_out= True
         print("Timeout reached! Forcibly killing container...")
         container.kill()
