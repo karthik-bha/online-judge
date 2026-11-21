@@ -10,13 +10,6 @@ jobs:
     Run-Tests:
         runs-on: ubuntu-latest
 
-        services:
-          docker:
-            image: docker:dind
-            options: --privileged --security-opt seccomp=unconfined
-            ports:
-              - 2375:2375
-
         steps:
             - uses: actions/checkout@v4
             
@@ -32,6 +25,12 @@ jobs:
             - name: Run Ruff
               run: ruff check .
             
+            - name: Check docker and version
+              run: docker version && docker ps
+              
+            - name: Pull sandbox image
+              run: docker pull python:3.12-slim
+
             - name: Run Pytest
               run: python -m pytest -v
               env:
