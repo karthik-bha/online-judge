@@ -24,9 +24,6 @@ jobs:
             
             - name: Run Ruff
               run: ruff check .
-            
-            - name: Check docker and version
-              run: docker version && docker ps
 
             - name: Pull sandbox image
               run: docker pull python:3.12-slim
