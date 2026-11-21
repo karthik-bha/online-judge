@@ -1,13 +1,26 @@
 name: Judge pipeline
 run-name: Runs Lint and pytest checks
-on: [push, pull_request]
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
     Run-Tests:
         runs-on: ubuntu-latest
+
+        services:
+          docker:
+            image: docker:dind
+            options: --privileged --security-opt seccomp=unconfined
+            ports:
+              - 2375:2375
+
         steps:
             - uses: actions/checkout@v4
             
-            - name: Set up python
+            - name: Set up python 3.12
               uses: actions/setup-python@v5
               with:
                 python-version: '3.12'
@@ -21,3 +34,5 @@ jobs:
             
             - name: Run Pytest
               run: python -m pytest -v
+              env:
+                DOCKER_HOST: tcp://localhost:2375
