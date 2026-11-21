@@ -27,11 +27,9 @@ jobs:
             
             - name: Check docker and version
               run: docker version && docker ps
-              
+
             - name: Pull sandbox image
               run: docker pull python:3.12-slim
 
             - name: Run Pytest
               run: python -m pytest -v
-              env:
-                DOCKER_HOST: tcp://localhost:2375
